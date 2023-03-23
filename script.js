@@ -11,7 +11,7 @@ const winConditions =  [
 
 const titleText = document.getElementById('titleText')
 const restartButton = document.getElementById('restartButton')
-const cells = Array.from(document.getElementsByClassName('gameCells'))
+const gameBoard = Array.from(document.getElementsByClassName('gameCells'))
 
 const playerX = "X"
 const playerO = "O"
@@ -19,7 +19,7 @@ let currentPlayer = playerX
 let boxes = Array(9).fill(null)
 
 const startGame = () => {
-    cells.forEach(gameCells => gameCells.addEventListener('click', cellClicked))
+    gameBoard.forEach(gameCells => gameCells.addEventListener('click', cellClicked))
 }
 
 function cellClicked(i) {
@@ -61,16 +61,14 @@ function gameWon(){
 
 restartButton.addEventListener('click', restart)
 
-function restart (){
+function restart(e){
     boxes.fill(null)
 
-    boxes.forEach(gameCells => {
-        boxes.innerHTML = "";
-    })
+    document.querySelectorAll('.cell')
+               .forEach(cell => cell.innerHTML = "");
 
     titleText.innerHTML = 'Tic Tac Toe'
     currentPlayer = playerX
 }
-
 
 startGame()
